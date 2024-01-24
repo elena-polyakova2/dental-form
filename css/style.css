@@ -1,0 +1,14 @@
+body {
+  padding: 1em;
+}
+
+#sign-here {
+  display: block;
+  /* set for mobile width: 70vw; */
+  /* set for mobile height: 40vw; */
+  border-radius: 10px;
+}
+
+#sign-button {
+  margin: 1em;
+}

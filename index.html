@@ -4,12 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dental Form</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <style>.error {color: #FF0000;}</style>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="container" style="border:1px solid #000;height:842px;width:595px;padding-left:8px;margin:auto;">
+  <!-- style="border:1px solid #000;height:842px;width:595px;padding-left:8px;margin:auto; -->
+  <div class="container">
     <!-- <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> -->
-    <form method="post" action="functions.php">
+    <form>
 
       <div class="" style="margin-left:60%;margin-bottom:0; margin-right:0;text-indent: 5em;"><span style="line-height:50%;font-size:14px;">192 Gammage St,</span></div>
       <div style="margin-left:60%;margin-top:0;margin-bottom:0; margin-right:0;text-indent: 5em;"><span style="line-height:50%;font-size:14px;">London, Ontario</span></div>
@@ -30,8 +33,8 @@
         </div>
       </div>
       <!-- Date -->
-      <div class="row" style="width:100%;margin-top:0;"> 
-        <div class="col-50" style="width: 40%;float:left;margin-top:0;">      
+      <div class="row gap-2 mt-0 pt-0" style="margin-top:0;"> 
+        <div class="col-md-3">      
           <label for="date">Date:</label>
           <input type="date" id="date" name="date">       
           <span class="error">* </span>
@@ -39,10 +42,25 @@
         </div>
 
         <!-- Date Requested-->
-        <div class="col-50" style="width: 40%;float:right;border:#000 1px solid;margin-right:5%;margin-top:0;">         
-          <label for="date-requested">DATE REQUESTED:</label><br />
-          <input type="date" id="date-requested" name="date-requested">       
-          <span class="error">* </span>         
+        <div class="col-md-8" style="border:#000 1px solid;"> 
+          <div class="row" >
+            <div class="col-md-4">
+              <div class="row">     
+                <label for="date-requested">DATE REQUESTED:</label>
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="row text-center">  
+              <input type="date" id="date-requested" name="date-requested"> 
+              </div>
+              </div>
+            <div class="col-md-3">
+              <div class="row">
+                <span class="error">* </span>
+              </div>
+            </div>
+                      
+          </div>
         </div>
       </div>
 
@@ -77,48 +95,61 @@
           <label for="age">Age:</label>
           <input type="number" id="age" name="age" min="1" max="150">
         </div>  
+      </div>
+      <div class="row gap-2">
+        <!-- Detailed Instruction -->
+        <div class="col-md-5">  
+          <label for="detailed-instruction">Detailed Instruction:</label>
+          <textarea id="detailed-instruction" name="detailed-instruction" rows="10" cols="30"></textarea>               
+        </div>
 
         <!-- TODO: Canva -->
-        <div class="col-50" style="width: 40%;float:right;margin-top:0;"> 
-          <!-- <img id="teeth" src="images/teeth.png" width="180" height="230" alt="Teeth and shade to choose"> -->
+        <div class="col-md-6"> 
+         
           <canvas id="myCanvas" width="200" height="300" style="border:1px solid black;"></canvas>       
         </div>
       </div>
-      
-      <!-- Detailed Instruction -->
-      <div class="col-50" style="width: 30%;float:left;margin-top:0;">  
-        <label for="detailed-instruction">Detailed Instruction:</label>
-        <textarea id="detailed-instruction" name="detailed-instruction" rows="15" cols="30"></textarea>               
-      </div>
 
       <!-- Return to me as a: -->
-      <div class="row" style="width:100%;margin-top:0;"> 
-        <div class="col-33" style="width:35%;float:left;">
-          <label for="return-as" style="text-decoration:underline;" cols="3">Return to me as a:</label><br />
+      <div class="row" style="width:100%;margin-top:5px;"> 
+        <div class="col-md-4">
+          <label for="return-as" style="text-decoration:underline;">Return to me as a:</label><br />
           <input type="checkbox" name="return-as" value="wax-up">wax up
         </div>
-        <div class="col-33" tyle="width:30%;float:left;">
-          <input type="checkbox" name="return-as" value="diagnostic">diagnostic
+        <div class="col-md-4">
+          <input type="checkbox" name="return-as" value="diagnostic">diagnostic<br />
           <input type="checkbox" name="return-as" value="try-in">try in
         </div>
-        <div class="col-33" tyle="width:25%;float:left;">
-          <input type="checkbox" name="return-as" value="bisque-bake">bisque bake
+        <div class="col-md-4">
+          <input type="checkbox" name="return-as" value="bisque-bake">bisque bake<br />
           <input type="checkbox" name="return-as" value="finish">finish
         </div>     
       </div>
 
       <!-- TODO: Dentist's Signature -->
-      <div class="col-100" style="width: 100%;float:left;margin-top:10px;"> 
-        <label for="return-as">Dentist's Signature:</label><br />
+      <div class="row mt-2">
+        <div class="col-md-3"> 
+          <label for="signature">Dentist's Signature:</label><br />
+          <button id="sign-button">Clear Signature</button>
+        </div>
+        <div class="col-md-9">
+          <canvas id="sign-here" width="600" height="600" style="border:1px solid black;"></canvas>
+        </div>
       </div>
-
+      
       <!-- Buttons -->
-      <div class="col-100" style="width: 100%;float:left;margin-top:10px;">
-        <input type="reset" value="Reset">
-        <!-- TODO: on submit, save doc in pdf format and email to 2 emails -->
-        <input type="submit" name="submit" value="Submit">
-        <!-- TODO: print the page -->
+      <div class="row d-print-none justify-content-center mt-4">
+        <div class="col-md-3">
+          <input type="reset" value="Reset">
+        </div>
+        <div class="col-md-3">
+          <!-- TODO: on submit, save doc in pdf format and email to 2 emails -->
+          <input type="submit" name="submit" value="Submit">
+        </div>
+        <div class="col-md-3">
+          <!-- TODO: print the page -->
         <input type="submit" name="print" value="Print">
+        </div> 
       </div>
       
     </form>
@@ -130,24 +161,14 @@
     window.onload = function() {
       const canvas = document.getElementById("myCanvas");
       const ctx = canvas.getContext("2d");
-      // ctx.fillText("Shade Details", 70, 220);
-      // ctx.fillStyle = "black";
-      // ctx.textAlign = "center";
-      // ctx.font = "30px Arial";
-      // ctx.textBaseline = "middle";
       const teethImg = new Image();
       teethImg.src = "images/teeth-7.png";
       teethImg.onload = () => {
         ctx.drawImage(teethImg, 0, 0, 200, 300)  
       }
-      
-      // const teethImg = new Image();
-      // teethImg.src = "images/teeth-shade-4.png";
-      // teethImg.onload = () => {
-      //   ctx.drawImage(teethImg, 150, 150, 250, 200)
-        
-      // }
     };
   </script>
+  <script src="script/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>
