@@ -1,5 +1,7 @@
 body {
-  padding: 1em;
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
 #sign-here {
@@ -11,4 +13,11 @@ body {
 
 #sign-button {
   margin: 1em;
+}
+#toolbar button {
+  background-color: #1565c0;
+  border: none;
+  border-radius: 4px;
+  color:white;
+  padding: 6px;
 }

@@ -10,7 +10,7 @@
 </head>
 <body>
   <!-- style="border:1px solid #000;height:842px;width:595px;padding-left:8px;margin:auto; -->
-  <div class="container">
+  <div class="container" id="content">
     <!-- <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> -->
     <form>
 
@@ -104,9 +104,17 @@
         </div>
 
         <!-- TODO: Canva -->
-        <div class="col-md-6"> 
-         
-          <canvas id="myCanvas" width="200" height="300" style="border:1px solid black;"></canvas>       
+        <div class="col-md-6 field"> 
+          <div id="toolbar" class="mb-2 pb-2">
+            <label for="color">Colour</label>
+            <input id="stroke" name="color" type="color">
+            <label for="lineWidth">Line Width</label>
+            <input id="lineWidth" name="lineWidth" type="number" value="5" style="width:10%;">
+            <button id="clear">Clear</button>
+          </div>
+          <div class="teeth-canvas">
+            <canvas id="teethCanvas" width="315" height="657" style="border:1px solid black;"></canvas>
+          </div>            
         </div>
       </div>
 
@@ -126,14 +134,14 @@
         </div>     
       </div>
 
-      <!-- TODO: Dentist's Signature -->
+      <!-- Dentist's Signature -->
       <div class="row mt-2">
         <div class="col-md-3"> 
           <label for="signature">Dentist's Signature:</label><br />
-          <button id="sign-button">Clear Signature</button>
+          <button id="sign-button" class="d-print-none">Clear Signature</button>
         </div>
         <div class="col-md-9">
-          <canvas id="sign-here" width="600" height="600" style="border:1px solid black;"></canvas>
+          <canvas id="sign-here" width="500" height="200" style="border:1px solid black;"></canvas>
         </div>
       </div>
       
@@ -144,31 +152,18 @@
         </div>
         <div class="col-md-3">
           <!-- TODO: on submit, save doc in pdf format and email to 2 emails -->
-          <input type="submit" name="submit" value="Submit">
+          <input type="submit" name="submit" value="Submit" id="saveButton">
         </div>
         <div class="col-md-3">
-          <!-- TODO: print the page -->
-        <input type="submit" name="print" value="Print">
+          <input type="submit" name="print" value="Print" onclick="window.print()">
         </div> 
       </div>
       
     </form>
   </div>
-  <!-- <?php
-    
-  ?> -->
-  <script>
-    window.onload = function() {
-      const canvas = document.getElementById("myCanvas");
-      const ctx = canvas.getContext("2d");
-      const teethImg = new Image();
-      teethImg.src = "images/teeth-7.png";
-      teethImg.onload = () => {
-        ctx.drawImage(teethImg, 0, 0, 200, 300)  
-      }
-    };
-  </script>
+  
   <script src="script/script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 </html>
