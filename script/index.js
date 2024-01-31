@@ -115,7 +115,7 @@ const IMappedEvents = {
 
 // Load teeth image on canvas
 const teethImg = new Image();
-teethImg.src = "images/teeth-10.svg";
+teethImg.src = "images/teeth.svg";
 teethImg.onload = () => {
   ctx.drawImage(teethImg, 0, 0, 315, 657);    
 }
@@ -189,27 +189,21 @@ teethCanvas.addEventListener('mouseup', ev => {
 
 teethCanvas.addEventListener('mousemove', draw);
 
-// TODO: Save as PDF
-function exportHTMLtoPDF() {
-  let htmlElement = document.getElementById('content');
-  //office 
-  const office = document.getElementById('office');
+// Save as PDF TODO
+// $(`#saveButton`).on("click", function(ev){
+//   ev.preventDefault();
+//   let htmlElement = document.getElementById('content');
+//   const office = document.getElementById('office').value;
+//   const patient = document.getElementById('patient').value;
+//   const date = document.getElementById('date').value;
+//   const currentTime = `${new Date().getHours()}h:${new Date().getMinutes()}m`;
 
-  //patient-name ??? TODO: think need full name: separate full name as first and last name
-  const patient = document.getElementById('patient');
+//   html2pdf().from(htmlElement).toPdf().save(office + '_' + 'patient-' + patient + '_' + date + '_' + currentTime + '.pdf');
+// });
 
-  //date ?? TODO: ask if they want to have date or date-requested, and if they want to have time, like hours:minutes
-  const date = document.getElementById('date');
 
-  //TODO: Get the actual time somehow to put in the name of the file
-  // const time = 
 
-  html2pdf().from(htmlElement).save('office_patient-name_date_time.pdf');
- 
-  // html2pdf().from(htmlElement).save(office + '_' + patient + '_' + date + '_' + time + '.pdf');
-}
-
-document.getElementById('saveButton').addEventListener('click', exportHTMLtoPDF);
+//document.getElementById('saveButton').addEventListener('click', exportHTMLtoPDF);
 
 //TODO: Save the form on the server ( subject to discuss). Find out how
 

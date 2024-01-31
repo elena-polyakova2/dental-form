@@ -1,0 +1,17 @@
+{
+  "name": "dental-form",
+  "version": "1.0.0",
+  "description": "Dental form to fill out for an order",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Elena Polyakova",
+  "license": "Apache",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "jspdf": "^2.5.1",
+    "jspdf-html2canvas": "^1.5.1",
+    "nodemailer": "^6.9.8"
+  }
+}
