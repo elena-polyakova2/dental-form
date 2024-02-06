@@ -113,101 +113,75 @@ const IMappedEvents = {
   end: []
 };
 
-// Load teeth image on canvas
-const teethImg = new Image();
-teethImg.src = "images/teeth.svg";
-teethImg.onload = () => {
-  ctx.drawImage(teethImg, 0, 0, 315, 657);    
-}
 
-// Drawing on teeth
-const teethCanvas = document.getElementById("teethCanvas");
-const toolbar = document.getElementById('toolbar');
-const ctx = teethCanvas.getContext('2d');
+// // Drawing on teeth
+// const teethCanvas = document.getElementById("teethCanvas");
+// const toolbar = document.getElementById('toolbar');
+// const ctx = teethCanvas.getContext('2d');
 
-const canvasOffsetX = teethCanvas.offsetLeft;
-const canvasOffsetY = teethCanvas.offsetTop;
+// const canvasOffsetX = teethCanvas.offsetLeft;
+// const canvasOffsetY = teethCanvas.offsetTop;
 
-teethCanvas.width = 315;
-teethCanvas.height = 657;
+// teethCanvas.width = 315;
+// teethCanvas.height = 657;
 
-let isPainting = false;
-let lineWidth = 5;
-let startX;
-let startY;
+// let isPainting = false;
+// let lineWidth = 5;
+// let startX;
+// let startY;
 
-toolbar.addEventListener('click', ev => {
-  ev.preventDefault();
-  const teethImg = new Image();
-  teethImg.src = "images/teeth-10.svg";
-  
-    if (ev.target.id === 'clear') {   
-    teethImg.onload = () => {
-      ctx.drawImage(teethImg, 0, 0, 315, 657);    
-    }
-    ctx.clearRect(teethImg, 0, 0, teethCanvas.width, teethCanvas.height);
-    }
-});
-
-toolbar.addEventListener('change', ev => {
-    if(ev.target.id === 'stroke') {
-        ctx.strokeStyle = ev.target.value;
-    }
-
-    if(ev.target.id === 'lineWidth') {
-        lineWidth = ev.target.value;
-    }
-    
-});
-
-const draw = (ev) => {
-    if(!isPainting) {
-        return;
-    }
-
-    ctx.lineWidth = lineWidth;
-    ctx.lineCap = 'round';
-
-    ctx.lineTo(ev.clientX - canvasOffsetX, ev.clientY);
-    ctx.stroke();
-}
-
-teethCanvas.addEventListener('mousedown', (ev) => {
-    isPainting = true;
-    startX = ev.clientX;
-    startY = ev.clientY;
-    ctx.lineCap = 'round';
-    ctx.beginPath();
-    ctx.moveTo(startX - canvasOffsetX, startY);
-});
-
-teethCanvas.addEventListener('mouseup', ev => {
-    isPainting = false;
-    ctx.stroke();
-    ctx.beginPath();
-});
-
-teethCanvas.addEventListener('mousemove', draw);
-
-// Save as PDF TODO
-// $(`#saveButton`).on("click", function(ev){
+// toolbar.addEventListener('click', ev => {
 //   ev.preventDefault();
-//   let htmlElement = document.getElementById('content');
-//   const office = document.getElementById('office').value;
-//   const patient = document.getElementById('patient').value;
-//   const date = document.getElementById('date').value;
-//   const currentTime = `${new Date().getHours()}h:${new Date().getMinutes()}m`;
-
-//   html2pdf().from(htmlElement).toPdf().save(office + '_' + 'patient-' + patient + '_' + date + '_' + currentTime + '.pdf');
+//   const teethImg = new Image();
+//   teethImg.src = "images/teeth-10.svg";
+  
+//     if (ev.target.id === 'clear') {   
+//     teethImg.onload = () => {
+//       ctx.drawImage(teethImg, 0, 0, 315, 657);    
+//     }
+//     ctx.clearRect(teethImg, 0, 0, teethCanvas.width, teethCanvas.height);
+//     }
 // });
 
+// toolbar.addEventListener('change', ev => {
+//     if(ev.target.id === 'stroke') {
+//         ctx.strokeStyle = ev.target.value;
+//     }
 
+//     if(ev.target.id === 'lineWidth') {
+//         lineWidth = ev.target.value;
+//     }
+    
+// });
 
-//document.getElementById('saveButton').addEventListener('click', exportHTMLtoPDF);
+// const draw = (ev) => {
+//     if(!isPainting) {
+//         return;
+//     }
 
-//TODO: Save the form on the server ( subject to discuss). Find out how
+//     ctx.lineWidth = lineWidth;
+//     ctx.lineCap = 'round';
 
-//TODO: Send to the pdf file to default email address (provided by us) and to the client (email proved in the form) - Email in the form, ask somewhere the person who fills out the form about their email
-//Idea: On submit ask the person of their email
+//     ctx.lineTo(ev.clientX - canvasOffsetX, ev.clientY);
+//     ctx.stroke();
+// }
+
+// teethCanvas.addEventListener('mousedown', (ev) => {
+//     isPainting = true;
+//     startX = ev.clientX;
+//     startY = ev.clientY;
+//     ctx.lineCap = 'round';
+//     ctx.beginPath();
+//     ctx.moveTo(startX - canvasOffsetX, startY);
+// });
+
+// teethCanvas.addEventListener('mouseup', ev => {
+//     isPainting = false;
+//     ctx.stroke();
+//     ctx.beginPath();
+// });
+
+// teethCanvas.addEventListener('mousemove', draw);
+
 
 

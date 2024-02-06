@@ -10,8 +10,11 @@
   "license": "Apache",
   "dependencies": {
     "fs": "^0.0.1-security",
+    "html2canvas": "^1.4.1",
     "jspdf": "^2.5.1",
     "jspdf-html2canvas": "^1.5.1",
-    "nodemailer": "^6.9.8"
+    "nodemailer": "^6.9.8",
+    "puppeteer": "^22.0.0",
+    "puppeteer-webkit": "^0.0.0"
   }
 }
