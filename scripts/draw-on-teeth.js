@@ -2,14 +2,16 @@
 const teethImg = new Image();
 teethImg.src = "images/teeth.svg";
 teethImg.onload = () => {
-  ctx.drawImage(teethImg, 0, 0, 315, 550);    
+  ctxTeeth.drawImage(teethImg, 0, 0, 315, 550);    
 }
 
 // Drawing on teeth
-const teethCanvas = document.getElementById("teethCanvas");
+const teethCanvas = document.getElementById('teethCanvas');
 const toolbar = document.getElementById('toolbar');
+//const toolbar = document.getElementsByClassName('toolbar')[0];
 var btn = document.getElementById('clear');
-const ctx = teethCanvas.getContext('2d');
+//var btn = document.getElementsByClassName('clear')[0];
+const ctxTeeth = teethCanvas.getContext('2d');
 
 const mappedEvents = {
   start: ['mousedown', 'touchstart'],
@@ -26,17 +28,18 @@ btn.addEventListener('click', ev => {
   const teethImg = new Image();
   teethImg.src = "images/teeth.svg";
   
-    if (ev.target.id === 'clear') {   
+    if (ev.target.id === 'clear') { 
+      ev.preventDefault();  
     teethImg.onload = () => {
-      ctx.drawImage(teethImg, 0, 0, 315, 657);    
+      ctxTeeth.drawImage(teethImg, 0, 0, 315, 550);    
     }
-    ctx.clearRect(teethImg, 0, 0, teethCanvas.width, teethCanvas.height);
+    ctxTeeth.clearRect(teethImg, 0, 0, teethCanvas.width, teethCanvas.height);
     }
 });
   
 toolbar.addEventListener('change', ev => {
     if(ev.target.id === 'stroke') {
-        ctx.strokeStyle = ev.target.value;
+      ctxTeeth.strokeStyle = ev.target.value;
     }
 
     if(ev.target.id === 'lineWidth') {
@@ -62,8 +65,8 @@ function onDrawingStart(ev) {
   if (!coords) {
       return;
   }
-  ctx === null || ctx === void 0 ? void 0 : ctx.beginPath();
-  ctx === null || ctx === void 0 ? void 0 : ctx.moveTo(coords.x, coords.y);
+  ctxTeeth === null || ctxTeeth === void 0 ? void 0 : ctxTeeth.beginPath();
+  ctxTeeth === null || ctxTeeth === void 0 ? void 0 : ctxTeeth.moveTo(coords.x, coords.y);
   drawing = true;
 }
 
@@ -77,11 +80,11 @@ function onDrawingMove(ev) {
   if (!coords) {
       return;
   }
-  ctx.lineWidth = lineWidth;
-  ctx.lineCap = 'round';
+  ctxTeeth.lineWidth = lineWidth;
+  ctxTeeth.lineCap = 'round';
 
-  ctx === null || ctx === void 0 ? void 0 : ctx.lineTo(coords.x, coords.y);
-  ctx === null || ctx === void 0 ? void 0 : ctx.stroke();
+  ctxTeeth === null || ctxTeeth === void 0 ? void 0 : ctxTeeth.lineTo(coords.x, coords.y);
+  ctxTeeth === null || ctxTeeth === void 0 ? void 0 : ctxTeeth.stroke();
 }
 
 function onDrawingEnd(ev) {
@@ -92,7 +95,7 @@ function onDrawingEnd(ev) {
 
 function clearDrawing(ev) {
   ev.preventDefault();
-  ctx?.clearRect(0, 0, teethCanvas.width, teethCanvas.height);
+  ctxTeeth?.clearRect(0, 0, teethCanvas.width, teethCanvas.height);
 }
 
 function getOffset(ev) {

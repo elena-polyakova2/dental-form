@@ -33,7 +33,11 @@ form {
 }
 
 .text-h {
-  font-size: 10px;
+  font-size: 12px;
+}
+
+.toolbar-inline {
+  display: none;
 }
 
 @media print { 
@@ -54,13 +58,86 @@ form {
    display: block;
  }
 
- #email-input {
+ #dentist-email {
   font-size: 10px;
  } 
 
  #date {
   font-size: 12px;
  }
+
+ #gender-col {
+  width: fit-content;
+ }
  }
 
+
+@media only screen and (max-width: 768px) {
+  [class*="col-"] {
+    width: 100%;
+  }
+
+  #gender-col {
+    width: fit-content;
+  }
+
+  #sign-here {
+    height: 200px;
+  }
+ 
+  #buttons-row, #date-row {
+    row-gap: 30px;
+  }
+
+  #return-as-row {
+    margin-bottom: 10px;
+  }
+
+  .toolbar-hidden {
+    display: none;
+  }
+ 
+  .toolbar-inline {  
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .stroke {
+    margin-left: 15px;
+    margin-right: 10px;
+  }
+  
+  #instruction-col {
+    margin-top: 10px;
+  }
+
+  .logo-col {
+    width: 50%;
+    float: inline-start;
+  }
+
+  .text-h {
+    width: 30%;
+    float: inline-end;
+  }
+
+  #top-row {
+    width: 100%;
+    display: inline;
+  }
+  
+}
+
+@media only screen and (min-width: 280px) and (max-width: 320px) {
+ 
+  [class*="row"] {
+    width: 100%;
+  }
+
+  .toolbar-inline {
+    width: fit-content;
+    margin-left: -70px;   
+}
+}
 

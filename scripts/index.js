@@ -1,24 +1,24 @@
 // Signature
-(function () {
+
   const signCanvas = document.getElementById('sign-here');
   var btn = document.getElementById('sign-button');
-  const ctx = signCanvas.getContext('2d');
+  const ctxSignature = signCanvas.getContext('2d');
   
-  if (!ctx) {
-      console.log('No canvas detected');
-      return;
-  }
+  // if (!ctxSignature) {
+  //     console.log('No canvas detected');
+  //     return;
+  // }
 
-  const mappedEvents = {
+  const mappedEventsOn = {
     start: ['mousedown', 'touchstart'],
     move: ['mousemove', 'touchmove'],
     end: ['mouseup', 'touchend', 'touchcancel'],
   };
 
-  let drawing = false;
+  let drawingSignature = false;
 
   function addEventListeners(element, event, fn) {
-    const evtArray = mappedEvents[event];
+    const evtArray = mappedEventsOn[event];
     if (!evtArray) {
       console.log('No events found');
       return;
@@ -36,15 +36,15 @@
     if (!coords) {
         return;
     }
-    ctx === null || ctx === void 0 ? void 0 : ctx.beginPath();
-    ctx === null || ctx === void 0 ? void 0 : ctx.moveTo(coords.x, coords.y);
-    drawing = true;
+    ctxSignature === null || ctxSignature === void 0 ? void 0 : ctxSignature.beginPath();
+    ctxSignature === null || ctxSignature === void 0 ? void 0 : ctxSignature.moveTo(coords.x, coords.y);
+    drawingSignature = true;
   }
 
   function onSigMove(ev) {
     // console.log('Signature moving');
     // console.log(ev.type);
-    if (!drawing) {
+    if (!drawingSignature) {
         return;
     }
     ev.preventDefault(); // to prevent scrolling when writing and window is scrollable
@@ -52,19 +52,19 @@
     if (!coords) {
         return;
     }
-    ctx === null || ctx === void 0 ? void 0 : ctx.lineTo(coords.x, coords.y);
-    ctx === null || ctx === void 0 ? void 0 : ctx.stroke();
+    ctxSignature === null || ctxSignature === void 0 ? void 0 : ctxSignature.lineTo(coords.x, coords.y);
+    ctxSignature === null || ctxSignature === void 0 ? void 0 : ctxSignature.stroke();
   }
 
   function onSigEnd(ev) {
       console.log('Signature ending');
       console.log(ev.type);
-      drawing = false;
+      drawingSignature = false;
   }
 
   function clearSignature(ev) {
     ev.preventDefault();
-    ctx?.clearRect(0, 0, signCanvas.width, signCanvas.height);
+    ctxSignature?.clearRect(0, 0, signCanvas.width, signCanvas.height);
   }
 
   function getOffset(ev) {
@@ -104,14 +104,38 @@
     btn.addEventListener('click', clearSignature, false);
   }
 
-  ctx.lineWidth = 2;
-})(); 
+  ctxSignature.lineWidth = 2;
+
+  const resetButton = document.getElementById('resetButton');
+  
+  resetButton.addEventListener ('click',  ev => {
+    ev.preventDefault();
+    var form = document.getElementById('content');
+    form.reset();
+    ctxSignature?.clearRect(0, 0, signCanvas.width, signCanvas.height);
+  
+    const teethImg = new Image();
+    teethImg.src = "images/teeth.svg";
+    teethImg.onload = () => {
+        ctxTeeth.drawImage(teethImg, 0, 0, 315, 550);    
+      }
+    ctxTeeth?.clearRect(teethImg, 0, 0, teethCanvas.width, teethCanvas.height);
+    
+  })
+
 
 const IMappedEvents = {
   start: [],
   move: [],
   end: []
 };
+
+
+
+
+//clearDrawing(ev);
+//clearSignature(ev);
+// Clear the form
 
 
 // // Drawing on teeth
