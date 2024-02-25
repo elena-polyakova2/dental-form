@@ -57,8 +57,8 @@
   }
 
   function onSigEnd(ev) {
-      console.log('Signature ending');
-      console.log(ev.type);
+      // console.log('Signature ending');
+      // console.log(ev.type);
       drawingSignature = false;
   }
 
@@ -123,14 +123,69 @@
     
   })
 
-
 const IMappedEvents = {
   start: [],
   move: [],
   end: []
 };
 
+// Upload image for signature
+var loadFile = function(event) {
+	var image = document.getElementById('output');
+	image.src = URL.createObjectURL(event.target.files[0]);
+};
 
+// Validation
+$( document ).ready( function () {
+
+  jQuery.validator.addMethod('email_rule', function (value, element) {
+		if (/^([a-zA-Z0-9_\-\.]+)\+?([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/.test(value)) {
+			return true;
+		} else {
+			return false;
+		};
+  });
+
+  $('#content').validate({
+    rules: {
+      dateRequested: {
+        required: true
+      },    
+      dentistEmail: {
+        required: true,
+        email_rule: true
+      },
+      office: {
+        required: true
+      },
+      patient: {
+        required: true
+      }
+    },
+    messages: {
+      dateRequested: "Please enter your requested date",
+      dentistEmail: "Please enter a valid email address",
+      office: "Please enter your office information",
+      patient: "Please enter the patient information",
+    },
+  } );
+} );
+
+// Choose requested Date from today to the future
+dateRequested.min = new Date().toISOString().split("T")[0];
+
+// Sticky buttons nav
+window.onscroll = function() {stickyButtons()};
+var navbar = document.getElementById("buttons-navbar");
+var sticky = navbar.offsetTop;
+
+function stickyButtons() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}
 
 
 //clearDrawing(ev);

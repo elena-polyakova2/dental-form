@@ -1,6 +1,37 @@
+const date = new Date();
+document.getElementById("showCurrentDate").innerHTML = date.toDateString();
+
+
 // Send the PDF data to the server
 $(document).ready(function() {
-  $('#saveButton').click(function() {
+  // Validation
+  $('#content').validate({
+    rules: {
+      dateRequested: {
+        required: true
+      },    
+      dentistEmail: {
+        required: true,
+        email_rule: true
+      },
+      office: {
+        required: true
+      },
+      patient: {
+        required: true
+      }
+    },
+    messages: {
+      dateRequested: "Please enter your requested date",
+      dentistEmail: "Please enter a valid email address",
+      office: "Please enter your office information",
+      patient: "Please enter the patient information",
+    },
+  
+});
+
+$('#saveButton').click(function() {
+  if ($('#content').valid()) {
     var doc = new jspdf.jsPDF();
     const dentist_email = document.getElementById('dentist-email').value;
     const office = document.getElementById('office').value;
@@ -34,10 +65,12 @@ $(document).ready(function() {
         }
       });
     });
-  });
+  } else {
+    // Show an error message if the form is not valid
+    alert('Please fill in all the fields correctly.');
+  }
 });
-
-
+});
 // $(document).ready(function() {
 //   $('#saveButton').click(function() {
 //     var doc = new jspdf.jsPDF();
@@ -77,6 +110,6 @@ $(document).ready(function() {
 
 
 
-//TODO: Save the form on the server ( subject to discuss).
+//TODO: Save the form on the server.
 
 //TODO: Send to the pdf file to default email address (provided by us) and to the client (email proved in the form) - Email in the form, ask somewhere the person who fills out the form about their email

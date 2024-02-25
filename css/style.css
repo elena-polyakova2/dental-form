@@ -1,8 +1,8 @@
 form {
-  width: 210mm;
+  width: 250mm;
   height: auto;
   margin: 0;
-  padding: 0;
+  padding: 0;      
   page-break-inside: avoid;
 } 
 
@@ -16,6 +16,7 @@ form {
 #sign-button {
   margin: 1em;
 }
+
 #toolbar button {
   background-color: #1565c0;
   border: none;
@@ -28,22 +29,121 @@ form {
   font-size: 14px;
 }
 
-.error {
-  color: #FF0000;
+.customGap {
+  margin: 0 15px;
 }
+/* .error {
+  color: #FF0000;
+} */
 
 .text-h {
   font-size: 12px;
 }
 
-.toolbar-inline {
-  display: none;
+#top-row {
+  
+  padding: 0;
+  display: inline-flex;
+}
+
+.ageRow {
+  width: fit-content;
+}
+
+.buttons-navbar {
+  background-color: #87CEEB;
+  overflow: hidden;
+}
+
+/* Navbar links */
+.buttons-navbar .btn {
+  float: center;
+  display: block;
+
+}
+.error {
+  color: red;
+}
+/* 
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+
+/* .navbar-nav ul li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0 10px;
+} */
+.navbar-brand img {
+  margin-left: 1em;
+}
+a.nav-link {
+  color: #000000;
+  font-family: "Hind Siliguri", sans-serif;
+  font-size: 17px;
+  line-height: 36px;
+  font-style: normal;
+  font-weight: 600;
+  padding-left: 10px;
+}
+
+a.nav-link:hover {
+  color: #0168B4;
+}
+
+.container-fluid {
+  height: 120px;
+}
+
+.navbar-brand {
+  margin-left: 2em;
+} 
+
+#buttons-row {
+  width: 70%;
+  align-items: center;          
+}
+
+.btn-size {
+  width: 60%;
+  
+}
+
+#cancelButton {
+  text-align: center;
+  justify-content: center;
+  align-self: center;
+  align-content: center;
+}
+
+#content {
+  padding: 16px;
+  margin: auto;
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 60px;
 }
 
 @media print { 
-  
+  #top-row {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+  }
+ 
   .text-h {
-    float: right;
+    font-size: 8px;
+    float: inline-end;
   }
   
   #signature-label {
@@ -69,7 +169,24 @@ form {
  #gender-col {
   width: fit-content;
  }
- }
+
+  .logo-col {
+    width: 45%;
+    float: inline-start;
+    padding: 0;
+  } 
+
+  #logo {
+    padding: 0;
+    width: 60%;
+  }
+
+  #content {
+    padding: 0;
+    margin: 0;
+  }
+
+}
 
 
 @media only screen and (max-width: 768px) {
@@ -77,6 +194,14 @@ form {
     width: 100%;
   }
 
+  [class*="row"] {
+    width: 100%;
+  }
+
+  /* #toolbar {
+    display: inline;
+    flex-direction: row;
+  } */
   #gender-col {
     width: fit-content;
   }
@@ -85,7 +210,7 @@ form {
     height: 200px;
   }
  
-  #buttons-row, #date-row {
+  #date-row {
     row-gap: 30px;
   }
 
@@ -93,15 +218,15 @@ form {
     margin-bottom: 10px;
   }
 
-  .toolbar-hidden {
+  /* .toolbar-hidden {
     display: none;
-  }
+  } */
  
-  .toolbar-inline {  
+  /* .toolbar-inline {  
     width: 100%;
     display: flex;
     justify-content: center;
-  }
+  } */
 
   .stroke {
     margin-left: 15px;
@@ -113,31 +238,116 @@ form {
   }
 
   .logo-col {
-    width: 50%;
+    width: 45%;
     float: inline-start;
-  }
+    padding: 0;
+  } 
 
+  #logo {
+    padding: 0;
+    width: 80%;
+  }
   .text-h {
-    width: 30%;
+    width: 40%;
     float: inline-end;
   }
 
   #top-row {
     width: 100%;
-    display: inline;
+    display: inline-block;
+  }
+
+  .customGap {
+    margin: 0;
+  }
+  /* .navbar-brand img {
+    width: 40vw;
+    margin-left: 1em;
+  } */
+
+  .container-fluid {
+    height: 70px;
+  }
+
+  .navbar-brand {
+    margin-left: 0;
+   
+  } 
+  .navbar-brand img {
+    margin-left: auto;
+    width: 140px;
+    height: 32px;
+  } 
+
+  #buttons-row {
+    width: fit-content;
+    margin-left: 0.2em;
+    margin-right: 0.2em;
+  }
+  .buttons-col {
+    width: 25%;
+  }
+
+  .btn-size {
+    width: 20vw;
+    font-size: 12px;
+    text-align: center;
+    /* align-content: center;
+    align-self: center; */       
+  } 
+
+  .uploadButton {
+    justify-content: center;
+    display: flex;
+    align-self: center;
+  }
+
+  #age {
+    width: 30vw;
   }
   
+  /* #toolbar button {
+    width: 40vw;
+  } */
+  #teethCanvas {
+    width: 60vw;
+    display: flex;
+    justify-content: center;
+  }
 }
 
-@media only screen and (min-width: 280px) and (max-width: 320px) {
+@media only screen and (min-width: 280px) and (max-width: 600px) {
  
   [class*="row"] {
     width: 100%;
   }
 
-  .toolbar-inline {
+  /* .toolbar-inline {
     width: fit-content;
     margin-left: -70px;   
-}
+} */
+
+  
+
+  .btn-size {
+    width: 20vw;
+    font-size: 12px;
+    text-align: center;
+    /* align-content: center;
+    align-self: center; */       
+  } 
+  #buttons-row {
+    width: fit-content;
+  }
+
+ #detailed-instruction {
+  width: 100vw;
+ }
+  
 }
 
+/* TODO: 
+- form on mobile screen
+-validation works, not possible to save doc before required fields filled out
+- at 540, 412 px age input is too long and goes on the row to itself
+*/

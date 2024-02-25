@@ -1,10 +1,14 @@
+const getDate = new Date();
+const date = document.getElementById("showCurrentDate").innerHTML = getDate.toDateString();
+
 // Save as PDF on the applicant's computer
 $(document).ready(function() {
   $('#saveButton').click(function() {
     var doc = new jspdf.jsPDF();
     const office = document.getElementById('office').value;
     const patient = document.getElementById('patient').value;
-    const date = document.getElementById('date').value;
+    // const date = document.getElementById('date').value;
+   
     const currentTime = `${new Date().getHours()}h:${new Date().getMinutes()}m`;
 
     html2canvas($('#content')[0]).then(function(canvas) {
