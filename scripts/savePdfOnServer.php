@@ -2,18 +2,9 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'libs\PHPMailer\src\Exception.php';
-require 'libs\PHPMailer\src\PHPMailer.php';
-require 'libs\PHPMailer\src\SMTP.php';
-
-// if (!defined('WP_CONTENT_DIR')) {
-//     define('WP_CONTENT_DIR', $_SERVER['DOCUMENT_ROOT'] . '/wp-content');
-// }
-
-// require WP_CONTENT_DIR . '/libs/PHPMailer/src/Exception.php';
-// require WP_CONTENT_DIR . '/libs/PHPMailer/src/PHPMailer.php';
-// require WP_CONTENT_DIR . '/libs/PHPMailer/src/SMTP.php';
-
+require '../libs/PHPMailer/src/Exception.php';
+require '../libs/PHPMailer/src/PHPMailer.php';
+require '../libs/PHPMailer/src/SMTP.php';
 
 // Load environment variables from .env
 function loadEnvironmentVariables($filePath) {
@@ -37,13 +28,30 @@ function loadEnvironmentVariables($filePath) {
     }
 }
 
-loadEnvironmentVariables(__DIR__ . '/.env');
-
+loadEnvironmentVariables(__DIR__ . '/../private/.env');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     require 'path/to/PHPMailerAutoload.php';
 
     $pdfData = base64_decode(str_replace('data:application/pdf;base64,', '', $_POST['pdfData']));
+    
+    // Sanitize the inputs
+    function sanitizeInput($input) {
+
+    $sanitizedInput = preg_replace('/[^a-zA-Z0-9._\/\'"\-]/', '', $input);
+    return $sanitizedInput;
+    }
+
+    $office = $_POST['office'];
+    $patient = $_POST['patient']; 
+
+    // Sanitize the inputs
+    $sanitizedOffice = sanitizeInput($office);
+    $sanitizedPatient = sanitizeInput($patient);
+    $sanitizedDentistEmail = filter_var($_POST['dentist_email'], FILTER_SANITIZE_EMAIL);
+
+
+    $filename = $sanitizedOffice . '_patient-' . $sanitizedPatient . '_' . $date . '_' . $currentTime . '.pdf';
     $filename = $_POST['filename'];
 
     // Save the PDF on the server
@@ -61,12 +69,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $mail->SMTPAuth = true;
     $mail->Username = 'elena311979@gmail.com'; // SMTP username
     $mail->Password = getenv('SMTP_PASSWORD');
-    $mail->SMTPSecure = 'tls';
-    $mail->Port = 587;
+    $mail->SMTPSecure = 'tls'; // TLS encryption
+    $mail->Port = 587; // Gmail SMTP port
 
     $mail->setFrom('elena311979@gmail.com', 'Stomadent Dental Laboratory');
     $mail->addAddress('contact@elenasoftdev.ca'); // Add a recipient
-    $mail->addAddress($_POST['dentist_email']); // Variable applicant-recipient email
+    $mail->addAddress($sanitizedDentistEmail); 
 
     $mail->addStringAttachment($pdfData, $filename);
 

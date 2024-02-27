@@ -4,7 +4,26 @@ form {
   margin: 0;
   padding: 0;      
   page-break-inside: avoid;
+  
+  box-shadow: inset 2px 2px 1px lightgray,
+               5px 5px 1px #8b97a1;
 } 
+
+#resetButton, 
+.resetButton {
+  border-radius: 10px;
+  box-shadow: 5px 5px 1px #9c2631,
+              3px 3px 2px #ff4459;
+  background: linear-gradient(180deg, rgba(220,53,69,1) 0%,rgba(156,38,49,1) 0%,  rgba(255,68,89,1) 100%);
+  border: #9c2631;
+}
+
+#resetButton:hover,
+#cancelButton:hover,
+#saveButton:hover,
+#printButton:hover {
+ transform: scale(1.1);
+}
 
 #sign-here {
   display: block;
@@ -32,9 +51,6 @@ form {
 .customGap {
   margin: 0 15px;
 }
-/* .error {
-  color: #FF0000;
-} */
 
 .text-h {
   font-size: 12px;
@@ -62,7 +78,7 @@ form {
 
 }
 .error {
-  color: red;
+  color: #FF0000;
 }
 /* 
 .navbar-nav {
@@ -118,6 +134,27 @@ a.nav-link:hover {
   justify-content: center;
   align-self: center;
   align-content: center;
+  border-radius: 10px;
+  box-shadow:  5px 5px 1px #b58905,
+               3px 3px 2px #fff909;
+  background: linear-gradient(180deg,  #ffc107 0%,#b58905 0%,  #fff909 100%);
+  border: #b58905;
+}
+
+#saveButton {
+  border-radius: 10px;
+  box-shadow: 5px 5px 1px #094eb4,
+              3px 3px 2px #118eff;
+  background: linear-gradient(180deg,  #0d6efd 0%,#094eb4 0%,  #118eff 100%);
+  border: #094eb4;
+}
+
+#printButton {
+  border-radius: 10px;
+  box-shadow: 5px 5px 1px #4d5359,
+              3px 3px 2px #8b97a1;
+  background: linear-gradient(180deg,  #6c757d 0%,#4d5359 0%,  #8b97a1 100%);
+  border: #4d5359;
 }
 
 #content {
@@ -156,6 +193,7 @@ a.nav-link:hover {
  
  .form {
    display: block;
+   box-shadow: none !important;
  }
 
  #dentist-email {
@@ -347,7 +385,6 @@ a.nav-link:hover {
 }
 
 /* TODO: 
-- form on mobile screen
--validation works, not possible to save doc before required fields filled out
+
 - at 540, 412 px age input is too long and goes on the row to itself
 */

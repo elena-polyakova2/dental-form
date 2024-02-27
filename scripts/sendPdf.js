@@ -1,9 +1,16 @@
 const date = new Date();
 document.getElementById("showCurrentDate").innerHTML = date.toDateString();
 
-
 // Send the PDF data to the server
 $(document).ready(function() {
+  jQuery.validator.addMethod('email_rule', function (value, element) {
+    if (/^([a-zA-Z0-9_\-\.]+)\+?([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/.test(value)) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+
   // Validation
   $('#content').validate({
     rules: {
@@ -31,6 +38,7 @@ $(document).ready(function() {
 });
 
 $('#saveButton').click(function() {
+  
   if ($('#content').valid()) {
     var doc = new jspdf.jsPDF();
     const dentist_email = document.getElementById('dentist-email').value;
